@@ -49,18 +49,23 @@ Instead of one massive file, the data is smartly organized into **monthly CSV fi
 
 It takes literally **2 minutes** to set up your automation. Just follow these simple steps:
 
-### Step 1: Create a Personal Access Token (PAT)
+### Step 1: Create Your Private Automation Repository
+Click the **"Use this template"** button at the top right of this repository page and select **"Create a new repository"**.
+> [!IMPORTANT]  
+> Make sure to set your new repository to **Private**! You don't want your traffic data exposed to the public.
+
+### Step 2: Create a Personal Access Token (PAT)
 Generate a GitHub PAT and make sure it has `repo` (Full control of private repositories) permissions. This allows the script to fetch your traffic statistics.
 
-### Step 2: Navigate to Settings
-Go to your repository settings and navigate to **Secrets and variables > Actions**.
+### Step 3: Navigate to Settings
+Go to your **new private repository's** settings and navigate to **Secrets and variables > Actions**.
 
 ![Settings to Actions](assets/traffic_automation_thumbnail_1.png)
 
-### Step 3: Add the Secret
+### Step 4: Add the Secret
 Add a new repository secret. 
 - **Name:** `TRAFFIC_TOKEN`
-- **Secret:** Paste the PAT you generated in Step 1.
+- **Secret:** Paste the PAT you generated in Step 2.
 
 ![Adding Secret Key](assets/traffic_automation_thumbnail_2.png)
 
