@@ -22,7 +22,7 @@ Please consider giving this project a ⭐ if you find it helpful!
 
 If you want to track your repository's growth, analyze long-term trends, or just keep a permanent record of your project's popularity, you need a way to back up this data regularly. 
 
-**This automation solves that problem perfectly.** It fetches your GitHub traffic data every single day and saves it permanently! 
+**This automation solves that problem perfectly.** Instead of running every day and wasting GitHub Action minutes, it smartly fetches your GitHub traffic data **every 13 days**. Since GitHub keeps 14 days of history, this creates a perfect 1-day overlap as a safety buffer—meaning 0 wasted minutes and absolutely no data missed!
 
 ---
 
@@ -31,7 +31,7 @@ If you want to track your repository's growth, analyze long-term trends, or just
 The repository is structured into three main components to ensure a clean and automated data extraction process:
 
 ### ⚙️ 1. The Automation Engine (`.github/workflows/`)
-This folder contains the `fetch_traffic.yml` workflow file. It uses **GitHub Actions** to automatically trigger the data extraction script every day at **17:00 UTC**. It runs completely in the background without any manual intervention.
+This folder contains the `fetch_traffic.yml` workflow file. It uses **GitHub Actions** to automatically trigger the data extraction script **every 13th day** at **17:00 UTC (10:30 PM IST)**. It runs completely in the background without any manual intervention, perfectly optimized to save CI/CD minutes.
 
 ### 🧠 2. The Core Logic (`save_traffic.py` & `github_traffic_fetch.py`)
 These Python scripts handle the heavy lifting:
@@ -63,7 +63,18 @@ Add a new repository secret.
 
 ![Adding Secret Key](assets/traffic_automation_thumbnail_2.png)
 
-🎉 **That's it!** The GitHub Action will now run daily and automatically commit your traffic data directly to the `data/` folder.
+🎉 **That's it!** The GitHub Action will now run every 13 days and automatically commit your traffic data directly to the `data/` folder, ensuring you build a permanent history without wasting runtime minutes.
+
+> [!TIP]
+> **First Run Tip:**
+> Because the automation is scheduled to run every 13 days (specifically on the **1st, 14th, and 27th** of the month), you won't see any files in your `data/` folder immediately if you set it up on a different day (e.g., the 16th).
+> 
+> To populate your initial traffic data immediately, **manually trigger the workflow once** on day one:
+> 1. Go to the **Actions** tab in your repository.
+> 2. Select the **Fetch GitHub Traffic** workflow.
+> 3. Click the **"Run workflow"** button.
+> 
+> The scheduled workflow will safely take over after that, and the Python script will automatically merge new data without duplicating any records.
 
 ---
 
