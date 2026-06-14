@@ -21,12 +21,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install github-traffic-monitor
 
-      - name: Run save_traffic.py
+      - name: Run github-traffic-monitor sync
         env:
           GITHUB_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
-        run: python save_traffic.py
+        run: github-traffic-monitor sync --dir data/
 
       - name: Commit and push changes
         run: |

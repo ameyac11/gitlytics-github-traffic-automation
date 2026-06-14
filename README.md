@@ -5,7 +5,7 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-blue?logo=github-actions)](https://github.com/features/actions)
 [![Python](https://img.shields.io/badge/Python-3.11+-yellow?logo=python)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-[![Dashboard](https://img.shields.io/badge/Dashboard-Companion%20App-purple?logo=react)](https://github.com/ameyac11/github-traffic-dashboard)
+[![Monitor](https://img.shields.io/badge/Monitor-Companion%20App-purple?logo=react)](https://github.com/ameyac11/github-traffic-monitor)
 
 **Never lose your GitHub repository traffic data again!** 📈
 
@@ -33,11 +33,11 @@ The repository is structured into three main components to ensure a clean and au
 ### ⚙️ 1. The Automation Engine (`.github/workflows/`)
 This folder contains the `fetch_traffic.yml` workflow file. It uses **GitHub Actions** to automatically trigger the data extraction script **every 13th day** at **17:00 UTC (10:30 PM IST)**. It runs completely in the background without any manual intervention, perfectly optimized to save CI/CD minutes.
 
-### 🧠 2. The Core Logic (`save_traffic.py` & `github_traffic_fetch.py`)
-These Python scripts handle the heavy lifting:
+### 🧠 2. The Core Logic (`github-traffic-monitor` package)
+The workflow automatically installs and runs the official Python package to handle the heavy lifting:
 - Securely authenticates with the GitHub API using your Personal Access Token.
 - Fetches all available traffic data (Views, Clones, Stars, Forks, Unique Visitors).
-- Intelligently merges new data with your historical data.
+- Intelligently merges new data with your historical data without any duplicates.
 
 ### 📂 3. The Data Storage (`data/`)
 Instead of one massive file, the data is smartly organized into **monthly CSV files** (e.g., `traffic_2024-01.csv`). This makes it incredibly easy to read, export, and analyze your data over time.
@@ -88,9 +88,9 @@ We have built a dedicated companion dashboard that supports two flexible options
 
 The dashboard turns your data into beautiful, interactive charts and key metrics to track your repository's performance.
 
-🔴 **Try the Live Dashboard here:** [git-traffic-dashboard.streamlit.app](https://git-traffic-dashboard.streamlit.app/)
+🔴 **Try the Live Dashboard here:** [git-traffic-monitor.streamlit.app](https://git-traffic-monitor.streamlit.app/)
 
-👉 **Check out the Dashboard Code Repository:** [github-traffic-dashboard](https://github.com/ameyac11/github-traffic-dashboard)
+👉 **Check out the Main Code Repository:** [github-traffic-monitor](https://github.com/ameyac11/github-traffic-monitor)
 
 ---
 
