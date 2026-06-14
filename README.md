@@ -17,7 +17,8 @@ Please consider giving this project a ⭐ if you find it helpful!
 
 ## 🧐 Why do we need automation?
 
-By default, GitHub only retains repository traffic data (views and clones) for the **latest 14 days**. After that, it is gone forever. 
+> [!WARNING]
+> **The 14-Day Data Loss:** By default, GitHub only retains repository traffic data (views and clones) for the **latest 14 days**. After two weeks, your valuable historical data is permanently deleted and gone forever. 
 
 If you want to track your repository's growth, analyze long-term trends, or just keep a permanent record of your project's popularity, you need a way to back up this data regularly. 
 
