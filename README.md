@@ -4,6 +4,7 @@
 
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-blue?logo=github-actions)](https://github.com/features/actions)
 [![Python](https://img.shields.io/badge/Python-3.11+-yellow?logo=python)](https://www.python.org/)
+[![PyPI](https://img.shields.io/pypi/v/github-traffic-monitor?color=blue&label=Powered%20by)](https://pypi.org/project/github-traffic-monitor/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 [![Monitor](https://img.shields.io/badge/Monitor-Companion%20App-purple?logo=react)](https://github.com/ameyac11/github-traffic-monitor)
 
@@ -34,7 +35,7 @@ The repository is structured into three main components to ensure a clean and au
 This folder contains the `fetch_traffic.yml` workflow file. It uses **GitHub Actions** to automatically trigger the data extraction script **every 13th day** at **17:00 UTC (10:30 PM IST)**. It runs completely in the background without any manual intervention, perfectly optimized to save CI/CD minutes.
 
 ### 🧠 2. The Core Logic (`github-traffic-monitor` package)
-The workflow automatically installs and runs the official Python package to handle the heavy lifting:
+The workflow automatically installs and runs the official [**github-traffic-monitor** PyPI package](https://pypi.org/project/github-traffic-monitor/) to handle the heavy lifting:
 - Securely authenticates with the GitHub API using your Personal Access Token.
 - Fetches all available traffic data (Views, Clones, Stars, Forks, Unique Visitors).
 - Intelligently merges new data with your historical data without any duplicates.
