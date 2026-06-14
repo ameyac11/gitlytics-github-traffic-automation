@@ -2,7 +2,7 @@ name: Fetch GitHub Traffic
 
 on:
   schedule:
-    - cron: '0 17 * * *' # Run at 17:00 UTC (10:30 PM IST)
+    - cron: '0 17 */13 * *' # Run at 17:00 UTC (10:30 PM IST) every 13 days
   workflow_dispatch:
 
 jobs:
