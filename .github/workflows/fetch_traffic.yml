@@ -21,7 +21,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install gitlytics
+        run: pip install "gitlytics~=0.1.4"
 
       - name: Run gitlytics sync
         env:
