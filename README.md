@@ -1,6 +1,8 @@
 <div align="center">
 
-# ⚙️ Gitlytics Automation 🚀
+<img src="./assets/logo.png" alt="Gitlytics Logo" width="150" />
+
+# <span style="color: #F05032">Git</span>lytics Automation
 
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-blue?logo=github-actions)](https://github.com/features/actions)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://www.python.org/)
@@ -28,7 +30,7 @@ Please consider giving this project a ⭐ if you find it helpful!
 The full Gitlytics ecosystem spans across a few repositories. If you are looking for the core Python API or the web dashboard, check out the links below:
 
 - 🐍 **[Gitlytics (Core Library)](https://github.com/ameyac11/gitlytics)**: The core Python library, REST API backend, and CLI tools.
-- 🌐 **[Gitlytics Web Ecosystem](https://github.com/ameyac11/gitlytics-deployement)**: The production React Dashboard hosted at [dashboard.gitlytics.dev](https://dashboard.gitlytics.dev).
+- **[<span style="color: #F05032">Git</span>lytics Web Ecosystem](https://github.com/ameyac11/gitlytics-deployement)**: The production React Dashboard hosted at [dashboard.gitlytics.dev](https://dashboard.gitlytics.dev).
 
 ---
 
