@@ -21,12 +21,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install "gitlytics~=0.1.4"
+        run: pip install "gitlytics>=0.1.6"
 
       - name: Run gitlytics sync
         env:
           GITHUB_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
-        run: gitlytics sync --data-dir data/
+        run: gitlytics sync --data-dir data/ --metrics views clones stars forks
 
       - name: Commit and push changes
         run: |
