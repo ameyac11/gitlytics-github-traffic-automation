@@ -2,7 +2,7 @@ name: Fetch GitHub Traffic
 
 on:
   schedule:
-    - cron: '0 17 */13 * *' # Run at 17:00 UTC (10:30 PM IST) every 13 days
+    - cron: '0 17 */13 * *'
   workflow_dispatch:
 
 jobs:
@@ -13,24 +13,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Python 3.11
-        uses: actions/setup-python@v4
+      - name: Fetch and Sync Traffic
+        uses: ./
         with:
-          python-version: '3.11'
+          traffic_token: ${{ secrets.TRAFFIC_TOKEN }}
 
-      - name: Install dependencies
-        run: pip install "gitlytics>=0.1.6"
-
-      - name: Run gitlytics sync
-        env:
-          GITHUB_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
-        run: gitlytics sync --data-dir data/ --metrics views clones stars forks
-
-      - name: Commit and push changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "📊 Traffic update $(date -u +'%Y-%m-%d')" && git push)

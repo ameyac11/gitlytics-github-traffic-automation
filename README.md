@@ -2,7 +2,7 @@
 
 <img src="./assets/logo.png" alt="Gitlytics Logo" width="150" />
 
-# Gitlytics Automation
+# Gitlytics Traffic Sync
 
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-blue?logo=github-actions)](https://github.com/features/actions)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://www.python.org/)
@@ -62,42 +62,76 @@ Instead of one massive file, the data is smartly organized into **monthly CSV fi
 
 ---
 
-## ⚡ 2-Minute Setup Guide
+## ⚡ Setup Guide
 
-It takes literally **2 minutes** to set up your automation. Just follow these simple steps:
+Choose one of the two options below to set up your traffic tracking:
 
-### Step 1: Create Your Private Automation Repository
-Click the **"Use this template"** button at the top right of this repository page and select **"Create a new repository"**.
-> [!IMPORTANT]  
-> Make sure to set your new repository to **Private**! You don't want your traffic data exposed to the public.
+### Option A: Reusable GitHub Action (Recommended)
+Add traffic tracking directly to your existing repository.
 
-### Step 2: Create a Personal Access Token (PAT)
-Generate a GitHub PAT and make sure it has `repo` (Full control of private repositories) permissions. This allows the script to fetch your traffic statistics.
+#### Step 1: Create a Fine-Grained Personal Access Token (PAT)
+1. Go to GitHub **Settings** > **Developer settings** > **Personal access tokens** > **Fine-grained tokens**.
+2. Click **Generate new token**.
+3. Select the repository you want to monitor.
+4. Under **Repository permissions**, set **Administration** to **Read-only**.
+5. Generate and copy the token.
 
-### Step 3: Navigate to Settings
-Go to your **new private repository's** settings and navigate to **Secrets and variables > Actions**.
+#### Step 2: Add the Token to Secrets
+1. In the repository you want to monitor, navigate to **Settings** > **Secrets and variables** > **Actions**.
+2. Create a new repository secret named `TRAFFIC_TOKEN` and paste your token.
 
-![Settings to Actions](assets/traffic_automation_thumbnail_1.png)
+#### Step 3: Create the Workflow File
+In your repository, create `.github/workflows/traffic.yml` and paste the following content:
 
-### Step 4: Add the Secret
-Add a new repository secret. 
-- **Name:** `TRAFFIC_TOKEN`
-- **Secret:** Paste the PAT you generated in Step 2.
+```yaml
+name: Gitlytics Traffic Sync
 
-![Adding Secret Key](assets/traffic_automation_thumbnail_2.png)
+on:
+  schedule:
+    - cron: '0 17 */13 * *'
+  workflow_dispatch:
 
-🎉 **That's it!** The GitHub Action will now run every 13 days and automatically commit your traffic data directly to the `data/` folder, ensuring you build a permanent history without wasting runtime minutes.
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-> [!TIP]
-> **First Run Tip:**
-> Because the automation is scheduled to run every 13 days (specifically on the **1st, 14th, and 27th** of the month), you won't see any files in your `data/` folder immediately if you set it up on a different day (e.g., the 16th).
-> 
-> To populate your initial traffic data immediately, **manually trigger the workflow once** on day one:
-> 1. Go to the **Actions** tab in your repository.
-> 2. Select the **Fetch GitHub Traffic** workflow.
-> 3. Click the **"Run workflow"** button.
-> 
-> The scheduled workflow will safely take over after that, and the Python script will automatically merge new data without duplicating any records.
+      - name: Sync Traffic Data
+        uses: ameyac11/gitlytics-action@v1
+        with:
+          traffic_token: ${{ secrets.TRAFFIC_TOKEN }}
+```
+
+---
+
+### Option B: Dedicated Traffic Vault (Template Repository)
+Keep all your repository traffic databases consolidated in a single, private vault repository.
+
+#### Step 1: Use this Template
+Click **Use this template** at the top right of this repository page and select **Create a new repository**.
+> [!IMPORTANT]
+> Make sure to set the new repository to **Private**!
+
+#### Step 2: Create a Personal Access Token (PAT)
+Generate a classic GitHub PAT with `repo` permissions to allow the sync process to fetch your repositories.
+
+#### Step 3: Add the Token to Secrets
+1. Go to your new private vault repository's settings.
+2. Navigate to **Secrets and variables** > **Actions**.
+3. Create a new repository secret named `TRAFFIC_TOKEN` and paste your PAT.
+
+---
+
+### 🚀 First Run Tip
+Because the cron schedule runs every 13 days, the folders/CSV files will not appear immediately.
+To populate your initial traffic data right away:
+1. Go to the **Actions** tab in your repository.
+2. Select the **Fetch GitHub Traffic** workflow.
+3. Click the **Run workflow** button.
 
 ---
 
