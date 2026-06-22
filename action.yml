@@ -1,0 +1,42 @@
+name: 'Gitlytics Traffic Sync'
+description: 'Automatically syncs and backs up GitHub traffic data to prevent the 14-day data loss.'
+branding:
+  icon: 'activity'
+  color: 'orange'
+inputs:
+  traffic_token:
+    description: 'GitHub Personal Access Token (PAT) with repository administration read permissions.'
+    required: true
+  data_dir:
+    description: 'The directory where traffic CSV files will be stored.'
+    required: false
+    default: 'data/'
+  metrics:
+    description: 'Metrics to sync, space-separated.'
+    required: false
+    default: 'views clones stars forks'
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Gitlytics
+      shell: bash
+      run: pip install "gitlytics>=0.1.6"
+
+    - name: Sync Traffic Data
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.traffic_token }}
+      run: gitlytics sync --data-dir "${{ inputs.data_dir }}" --metrics ${{ inputs.metrics }}
+
+    - name: Commit and push changes
+      shell: bash
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add "${{ inputs.data_dir }}"
+        git diff --quiet && git diff --staged --quiet || (git commit -m "📊 Traffic update $(date -u +'%Y-%m-%d')" && git push)
