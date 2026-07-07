@@ -4,11 +4,11 @@
 
 # Gitlytics Traffic Sync
 
-[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-blue?logo=github-actions)](https://github.com/features/actions)
-[![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://www.python.org/)
-[![PyPI](https://img.shields.io/pypi/v/gitlytics?color=blue&label=Powered%20by)](https://pypi.org/project/gitlytics/)
-[![Live Dashboard](https://img.shields.io/badge/Live%20Dashboard-dashboard.gitlytics.dev-success)](https://dashboard.gitlytics.dev)
-[![Live Docs](https://img.shields.io/badge/Live%20Docs-docs.gitlytics.dev-success)](https://docs.gitlytics.dev)
+[![GitHub Actions](https://api.gitlytics.dev/api/badge/tech.svg?slug=githubactions&style=icon_label_value&label=GH%20Actions&label_color=%23555555&variant=plastic&value=Automated&value_color=%232088FF)](https://github.com/features/actions)
+[![Python](https://api.gitlytics.dev/api/badge/tech.svg?slug=python&style=icon_label_value&label=Python&label_color=%23555555&variant=plastic&value=3.11%2B&value_color=%233776AB)](https://www.python.org/)
+[![PyPI](https://api.gitlytics.dev/api/badge/pypi/gitlytics.svg?label=Powered%20by)](https://pypi.org/project/gitlytics/)
+[![Live Dashboard](https://api.gitlytics.dev/api/badge/tech.svg?slug=livedemo&style=icon_label_value&label=Live%20Dashboard&label_color=%23555555&variant=plastic&value=dashboard.gitlytics.dev&value_color=%233FB950)](https://dashboard.gitlytics.dev)
+[![Live Docs](https://api.gitlytics.dev/api/badge/tech.svg?slug=docs&style=icon_label_value&label=Live%20Docs&label_color=%23555555&variant=plastic&value=docs.gitlytics.dev&value_color=%233FB950)](https://docs.gitlytics.dev)
 
 **Never lose your GitHub repository traffic data again!** 📈
 
